@@ -7,13 +7,23 @@ export function Home() {
   const [topMovies, setTopMovies] = useState([])
 
   const getTopRatedMovies = async (url) => {
-    
+    const response = await fetch(url)
+    const data = await response.json()
+
+    setTopMovies(data.results)
   }
 
+  useEffect(() => {
+    const topRatedUrl = `${moviesURL}top_rated?${apiKey}`
 
+    getTopRatedMovies(topRatedUrl)
+  }, [])
   return (
-    <div>
-      Home
+    <div className="container">
+      <h2 className="title">Melhores filmes:</h2>
+      <div className="movies-container">
+      {topMovies.length > 0 && topMovies.map((movie) => <p>{movie.title}</p>)}
+      </div>
     </div>
   )
 }
