@@ -5,7 +5,6 @@ export function App() {
   return (
     <div>
       <Navbar />
-      <h1>Movies Lab</h1>
       <Outlet />
     </div>
   )
